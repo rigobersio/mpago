@@ -1,11 +1,11 @@
 {
-  "name": "serverPagos",
+  "name": "server-pagos",
   "version": "1.0.0",
   "description": "Para probar Ppagos",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "start": "concurrently \"npm run server\""
+    "start": "npm run server"
   },
   "author": "",
   "license": "ISC",
