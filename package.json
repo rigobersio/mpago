@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Para probar Ppagos",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "server": "nodemon index.js",
     "start": "npm run server"
