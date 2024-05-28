@@ -1,5 +1,4 @@
-import { MercadoPagoConfig, Preference, Preference } from "mercadopago";
-
+const { MercadoPagoConfig, Preference,} = require("mercadopago");
 const axios = require("axios");
 
 require("dotenv").config();
