@@ -1,5 +1,4 @@
 const { MercadoPagoConfig, Preference,} = require("mercadopago");
-const axios = require("axios");
 
 require("dotenv").config();
 const { ACCESS_TOKEN } = process.env;
