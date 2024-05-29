@@ -2,6 +2,7 @@ const { postCreatePreferenceController } = require("../controllers/postCreatePre
 
 const postHandlerPreference = async (req, res) => {
   try {
+    console.log(`soy el req.body ${JSON.stringify(req.body)}`);
     const { title, quantity, unit_price } = req.body;
     const idempotencyKey = req.headers['x-idempotency-key']; // Recibe la clave de idempotencia del cliente
 

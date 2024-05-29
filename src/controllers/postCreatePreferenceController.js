@@ -15,8 +15,8 @@ const postCreatePreferenceController = async ( title, quantity, unit_price, idem
       items: [
         {
           title: title,
-          quantity: Number(quantity),
-          unit_price: Number(unit_price),
+          quantity: quantity,
+          unit_price: unit_price,
           currency_id: "ARS",
         }
       ],
@@ -27,20 +27,25 @@ const postCreatePreferenceController = async ( title, quantity, unit_price, idem
       },
       auto_return: "approved",
     };
+    
+    console.log("Creando objeto body:", body);
 
     const preference = new Preference(client);
 
 
-    const result = await preference.create({ body }, {
+    const result = await preference.create({ body, idempotencyKey })/*, {
       headers: {
         'x-idempotency-key': idempotencyKey
       }
     });
+*/
+    console.log("Respuesta de MercadoPago:", result);
 
     if (result.body.id) {
+      console.log("ID de preferencia recibido:", result.body.id);
       return result.body.id;
     } else {
-      console.log(`Hay un problema con el body o el id. Este es el body: ${result}`);
+      console.log(`Hay un problema con el body o el id. Este es el body: ${JSON.stringify(result.body)}`);
       return null;
     }
   } catch (error) {
@@ -48,7 +53,6 @@ const postCreatePreferenceController = async ( title, quantity, unit_price, idem
     throw new Error("Error al crear preferencia");
   }
 };
-
 
 module.exports = { postCreatePreferenceController };
 
