@@ -5,19 +5,19 @@ require("dotenv").config();
 const { ACCESS_TOKEN } = process.env;
 
 const client = new MercadoPagoConfig({
-  access_token: process.env.ACCESS_TOKEN,
+  access_token: 'TEST-5637714294088561-052802-1725eda81fbdee0c7262a2e8525222c3-441929654',
 });
 
 
 
-const postCreatePreferenceController = async () => {
+const postCreatePreferenceController = async ( title, quantity, unit_price) => {
   try {
     const body = {
       items: [
         {
-          title: req.body.title,
-          quantity: Number(req.body.quantity),
-          unit_price: Number(req.body.unit_price),
+          title: title,
+          quantity: Number(quantity),
+          unit_price: Number(unit_price),
           currency_id: "ARS",
         }
       ],

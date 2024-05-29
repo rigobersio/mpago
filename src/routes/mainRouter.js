@@ -5,7 +5,7 @@ const mPagoRouter = require("./mPagoRouter");
 
 const mainRouter = Router();
 
-mainRouter.use("/mpago", mPagoRouter);
+mainRouter.use("/", mPagoRouter);
 
 
 

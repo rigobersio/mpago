@@ -4,7 +4,7 @@ const {postHandlerPreference} = require("../handlers/mPagoHandlers");
 const mPagoRouter = Router();
 
 
-mPagoRouter.post("/", postHandlerPreference);
+mPagoRouter.post("/create-preference", postHandlerPreference);
 
 
 module.exports = mPagoRouter;

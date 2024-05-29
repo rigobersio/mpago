@@ -3,7 +3,8 @@ const { postCreatePreferenceController } = require("../controllers/postCreatePre
 const postHandlerPreference = async (req, res) => {
 
   try {
-    let respuesta = await postCreatePreferenceController();
+    const { title, quantity, unit_price } = req.body;
+    let respuesta = await postCreatePreferenceController( title, quantity, unit_price );
     res.status(200).send({
       answer: {
         respuesta,
