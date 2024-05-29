@@ -6,6 +6,7 @@ const { ACCESS_TOKEN } = process.env;
 const client = new MercadoPagoConfig({
   access_token: ACCESS_TOKEN,
 });
+console.log(`access_token: ${ACCESS_TOKEN}`);
 
 
 
@@ -15,8 +16,8 @@ const postCreatePreferenceController = async ( title, quantity, unit_price, idem
       items: [
         {
           title: title,
-          quantity: quantity,
-          unit_price: unit_price,
+          quantity: Number(quantity),
+          unit_price: Number(unit_price),
           currency_id: "ARS",
         }
       ],
@@ -33,12 +34,12 @@ const postCreatePreferenceController = async ( title, quantity, unit_price, idem
     const preference = new Preference(client);
 
 
-    const result = await preference.create({ body, idempotencyKey })/*, {
+    const result = await preference.create( body, {
       headers: {
         'x-idempotency-key': idempotencyKey
       }
     });
-*/
+
     console.log("Respuesta de MercadoPago:", result);
 
     if (result.body.id) {
