@@ -9,7 +9,7 @@ const client = new MercadoPagoConfig({
 
 
 
-const postCreatePreferenceController = async ( title, quantity, unit_price) => {
+const postCreatePreferenceController = async ( title, quantity, unit_price, idempotencyKey) => {
   try {
     const body = {
       items: [
@@ -31,18 +31,22 @@ const postCreatePreferenceController = async ( title, quantity, unit_price) => {
     const preference = new Preference(client);
 
 
-    const result = await preference.create({ body });
+    const result = await preference.create({ body }, {
+      headers: {
+        'x-idempotency-key': idempotencyKey
+      }
+    });
 
-    if (result.id) {
-      return result.id;
-    } else if (result) {
-      return console.log(`hay un problema con el body o el id. este es el body: ${result}`);
+    if (result.body.id) {
+      return result.body.id;
+    } else {
+      console.log(`Hay un problema con el body o el id. Este es el body: ${result}`);
+      return null;
     }
   } catch (error) {
     console.error("Error al crear preferencia:", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
-  };
-
+    throw new Error("Error al crear preferencia");
+  }
 };
 
 
